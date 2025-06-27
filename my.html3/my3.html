@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Best Greeting Website Ever 💖</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+    }
+
+    h1 {
+      margin-top: 30px;
+      color: #d81b60;
+      font-size: 3.8em;
+      font-weight: 700;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 15px #ff80ab, 0 0 25px #ff80ab;
+      }
+      to {
+        text-shadow: 0 0 25px #f06292, 0 0 50px #f06292;
+      }
+    }
+
+    .slideshow {
+      width: 550px;
+      height: 550px;
+      margin: 40px auto;
+      border-radius: 40px;
+      overflow: hidden;
+      box-shadow: 0 0 35px rgba(255, 105, 180, 0.6);
+      border: 6px solid #f48fb1;
+      background: #fff;
+      transition: transform 0.4s ease-in-out;
+    }
+
+    .slideshow:hover {
+      transform: scale(1.05);
+    }
+
+    .slideshow img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 40px;
+    }
+
+    .falling {
+      position: fixed;
+      top: -10px;
+      font-size: 30px;
+      opacity: 0.9;
+      animation: fall 10s linear infinite;
+      z-index: 0;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .falling:hover {
+      transform: translateX(70px) rotate(30deg) scale(1.2);
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-10px);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
+    }
+
+    footer {
+      margin-top: 20px;
+      font-size: 1.4em;
+      color: #880e4f;
+      font-style: italic;
+    }
+
+    .quote {
+      font-size: 1.2em;
+      margin: 10px auto;
+      color: #ad1457;
+      transition: opacity 0.5s ease-in-out;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <h1>💝 A Lovely Surprise Just for You 💝</h1>
+
+  <div class="slideshow">
+    <img id="photo" src="https://placekitten.com/550/550" alt="Greeting Image" />
+  </div>
+
+  <div class="quote" id="quote">“You are special, you are loved, and this is just for you 💖”</div>
+
+  <footer>
+    Made with infinite love & joy ✨
+  </footer>
+
+  <script>
+    const images = [
+      'https://placekitten.com/550/550',
+      'https://placebear.com/550/550',
+      'https://picsum.photos/550/550?random=1',
+      'https://picsum.photos/550/550?random=2',
+      'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=550&h=550&q=80'
+    ];
+    let index = 0;
+    const photo = document.getElementById('photo');
+
+    setInterval(() => {
+      index = (index + 1) % images.length;
+      photo.src = images[index];
+    }, 5000);
+
+    const emojis = ['🌸', '🌺', '🌷', '💝', '💖', '💘', '❤️', '🌼'];
+
+    function createFallingEmoji() {
+      const emoji = document.createElement('div');
+      emoji.classList.add('falling');
+      emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      emoji.style.left = Math.random() * 100 + 'vw';
+      emoji.style.fontSize = Math.random() * 28 + 26 + 'px';
+      emoji.style.animationDuration = (5 + Math.random() * 7) + 's';
+      document.body.appendChild(emoji);
+
+      setTimeout(() => {
+        emoji.remove();
+      }, 12000);
+    }
+
+    setInterval(createFallingEmoji, 180);
+
+    const quotes = [
+      "You are special, you are loved, and this is just for you 💖",
+      "Every smile makes you a day younger 🌟",
+      "Sending hugs, hearts, and happy thoughts your way 💫",
+      "You light up every room you walk into ✨",
+      "You make life blossom like spring 💐",
+      "Believe in the magic that is YOU 🌈"
+    ];
+    let quoteIndex = 0;
+    const quoteEl = document.getElementById('quote');
+
+    setInterval(() => {
+      quoteIndex = (quoteIndex + 1) % quotes.length;
+      quoteEl.style.opacity = 0;
+      setTimeout(() => {
+        quoteEl.textContent = quotes[quoteIndex];
+        quoteEl.style.opacity = 1;
+      }, 500);
+    }, 5000);
+  </script>
+</body>
+</html>
